@@ -1,8 +1,12 @@
+import java.util.Scanner;
 public class FracCalc {
 
     public static void main(String[] args) 
     {
         // TODO: Read the input from the user and call produceAnswer with an equation
+        Scanner scannie = new Scanner(System.in);
+        String rawInput = scannie.nextLine();
+        System.out.println(produceAnswer(rawInput));
 
     }
     
@@ -16,9 +20,14 @@ public class FracCalc {
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input)
     { 
-        // TODO: Implement this function to produce the solution to the input
+        Scanner splittie = new Scanner(input);
+        splittie.useDelimiter(" "); // default value but issok
+
+        String product1 = splittie.next();
+        String operand = splittie.next();
+        String product2 = splittie.next();
         
-        return "";
+        return product2;
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
