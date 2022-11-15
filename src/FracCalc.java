@@ -5,13 +5,15 @@ public class FracCalc {
         // TODO: Read the input from the user and call produceAnswer with an equation
         Scanner scanner = new Scanner(System.in);
         String rawInput = "";
-        while (!rawInput.equals("quit")) {
+        while (true) {
             rawInput = scanner.nextLine();
+
+            if (rawInput.equals("quit")) {
+                break;
+            }
+
             System.out.println(produceAnswer(rawInput));
         }
-
-        System.out.println(produceAnswer(rawInput));
-
     }
 
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
@@ -36,12 +38,12 @@ public class FracCalc {
         String numerator2 = splitBy(scantie, "/");
         String denominator2 = splitBy(scantie, "/");
 
-        String returnStr = "whole:" + wholeNum2 + " numerator:" + numerator2 + " denominator:" + denominator2;
-        return returnStr;
+        return "whole:" + wholeNum2 + " numerator:" + numerator2 + " denominator:" + denominator2;
+
     }
 
-    public static String splitBy(Scanner scannie, String delimeter) {
-        scannie.useDelimiter(delimeter);
+    public static String splitBy(Scanner scannie, String delimiter) {
+        scannie.useDelimiter(delimiter);
         if (scannie.hasNext()) {
             return scannie.next();
         }
