@@ -1,66 +1,77 @@
 import java.util.Scanner;
-public class FracCalc {
 
+/**
+ * A class that acts like a calculator, able to compute any operation between two fractions or whole numbers inputted
+ * by the user and supports multiple successions of input.
+ * @author Zoya Brahimzadeh
+ */
+
+public class FracCalc {
+    /**
+     * A main method that takes in initial user input and moderates the feedback loop between user and computer,
+     * printing out completed calculations.
+     */
     public static void main(String[] args) {
-        // TODO: Read the input from the user and call produceAnswer with an equation
-//        Scanner scanner = new Scanner(System.in);
-//        String rawInput = "";
-//
-//        while (true) {
-//            rawInput = scanner.nextLine();
-//
-//            if (rawInput.equals("quit")) {
-//                break;
-//            }
-//
-//            System.out.println(produceAnswer(rawInput));
-//        }
-        System.out.println(produceAnswer("-3_3/4 / -2_2/3"));
-//        System.out.println(produceAnswer("5/6 / -2/3"));
-//        System.out.println(produceAnswer("3/2 * 5/4"));
-//        System.out.println(produceAnswer("9/2 - 1/4"));
+        Scanner scanner = new Scanner(System.in);
+        String rawInput = "";
+
+        while (true) {
+            rawInput = scanner.nextLine();
+
+            if (rawInput.equals("quit")) {
+                break;
+            }
+
+            System.out.println(produceAnswer(rawInput));
+        }
+
     }
 
-    // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
-    // This function takes a String 'input' and produces the result
-    //
-    // input is a fraction string that needs to be evaluated.  For your program, this will be the user input.
-    //      e.g. input ==> "1/2 + 3/4"
-    //
-    // The function should return the result of the fraction after it has been calculated
-    //      e.g. return ==> "1_1/4"
-
-
+    /** A function that parses the input, seperating the main components in order to create a Fraction object
+     * and then develop a correct method call using static calculation methods from the Fraction class in order
+     * to compute the output
+     * @param input the input String provided by the user containing the two values and the operand to relate them
+     * @return a String containing the computed product of the two values with the requested operand
+     */
     public static String produceAnswer(String input) {
+        // Parses input into 3 parts: 2 fractional parts and the operand
         Scanner scannie = new Scanner(input);
         String product1 = scannie.next();
         String operator = scannie.next();
         String product2 = scannie.next();
 
         Fraction frac = new Fraction(product1);
-        System.out.println(frac.toString());
         Fraction frac2 = new Fraction(product2);
-        System.out.println(frac2.toString());
+
 
         Fraction newFrac;
 
+        // checks if the user requested addition
         if (operator.equals( "+")) {
             newFrac = frac.sumFractions(frac2, false);
         }
+        // checks if the user requested subtraction
         else if (operator.equals( "-")) {
             newFrac = frac.sumFractions(frac2, true);
         }
+        // checks if the user requested multiplication
         else if (operator.equals( "*")) {
             newFrac = frac.productFraction(frac2, false);
         }
+        // checks if the user requested division
         else if (operator.equals( "/")) {
             newFrac = frac.productFraction(frac2, true);
         }
+
+        // Operand is not one of the ones supported by the calculator
         else {
             return "Error! Operator not recognized, please try again.";
         }
 
-        return newFrac.toString2();
+        // Reduces the fraction before returning it
+        Fraction.reduce(newFrac);
+
+        return newFrac.toString3();
 
 
     }
