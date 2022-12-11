@@ -10,6 +10,7 @@ public class FracCalc {
     /**
      * A main method that takes in initial user input and moderates the feedback loop between user and computer,
      * printing out completed calculations.
+     * @param args System arguments
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
